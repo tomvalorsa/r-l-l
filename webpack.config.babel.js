@@ -23,7 +23,24 @@ export default {
         test: /\.css$/,
         loader: extract.extract({
           fallback: 'style-loader',
-          use: 'css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]!postcss-loader'
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[path][name]---[local]---[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  nested(),
+                  autoprefixer()
+                ]
+              }
+            }
+          ]
         }),
         include: path.join(__dirname, 'src')
       }
@@ -36,14 +53,6 @@ export default {
     new extract('index.css'),
     new copy([
       { from: './src/index.html' }
-    ]),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [
-          nested(),
-          autoprefixer()
-        ]
-      }
-    })
+    ])
   ]
 }
