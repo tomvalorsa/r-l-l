@@ -1,17 +1,12 @@
-@import "normalize.css";
-@import "roboto-fontface";
-
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-html {
+
+html,
+body,
+#root {
   height: 100%;
-}
-body {
-  font-family: Roboto, arial, sans-serif;
-  font-size: 13px;
-  min-height: 100vh;
-  height: 100%;
+  font-size: 16px; /*for rems*/
 }

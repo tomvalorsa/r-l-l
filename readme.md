@@ -1,8 +1,4 @@
-# Project Skeleton
+# Todo:
 
-- react
-- redux
-- reselect
-- babel
-- webpack
-- karma/webpack/enzyme testing
+- linting setup
+- testing setup
