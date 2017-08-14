@@ -1,4 +1,5 @@
+Basic project skeleton
+
 # Todo:
 
-- linting setup
 - testing setup

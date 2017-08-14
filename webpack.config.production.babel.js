@@ -2,8 +2,6 @@ import webpack from 'webpack'
 import config from './webpack.config.babel'
 import path from 'path'
 
-// TODO: minify css
-
 export default {
   ...config,
   plugins: [
@@ -15,10 +13,12 @@ export default {
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      comments: false,
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       },
-      sourceMap: true
+      sourceMap: false
     })
   ],
   devtool: 'cheap-module-source-map'

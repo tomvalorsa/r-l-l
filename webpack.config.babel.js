@@ -2,11 +2,10 @@ import webpack from 'webpack'
 import path from 'path'
 import extract from 'extract-text-webpack-plugin'
 import copy from 'copy-webpack-plugin'
-import nested from 'postcss-nested'
 import autoprefixer from 'autoprefixer'
 
 export default {
-  entry: path.join(__dirname, './src/index.js'),
+  entry: ['babel-polyfill', path.join(__dirname, './src/index.js')],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js'
@@ -20,7 +19,7 @@ export default {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         loader: extract.extract({
           fallback: 'style-loader',
           use: [
@@ -32,10 +31,12 @@ export default {
               }
             },
             {
+              loader: 'sass-loader'
+            },
+            {
               loader: 'postcss-loader',
               options: {
                 plugins: [
-                  nested(),
                   autoprefixer()
                 ]
               }
@@ -43,6 +44,14 @@ export default {
           ]
         }),
         include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg)$/,
+        loader: 'file-loader?name=[hash].[ext]'
+      },
+      {
+        test: /\.ico$/,
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   },

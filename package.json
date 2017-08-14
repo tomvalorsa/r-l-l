@@ -1,16 +1,18 @@
 {
   "name": "skeleton",
-  "version": "2.0.0",
-  "description": "skeleton project",
+  "version": "2.1.0",
+  "description": "Basic project skeleton",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "build:prod": "webpack -p --config ./webpack.config.production.babel.js",
-    "dev": "webpack --watch"
+    "lint": "eslint src",
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && webpack",
+    "build:prod": "npm run clean && npm run projects && webpack --config ./webpack.config.production.babel.js",
+    "dev": "npm run clean && webpack --watch"
   },
   "author": "Tom Valorsa (github/tomvalorsa)",
-  "license": "MIT & GPL",
+  "license": "UNLICENSED",
   "browserslist": [
     "last 2 versions"
   ],
@@ -28,6 +30,7 @@
   "dependencies": {
     "autoprefixer": "^7.0.1",
     "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -36,12 +39,25 @@
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.1",
+    "eslint": "^4.2.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.2",
     "postcss-loader": "^2.0.5",
-    "postcss-nested": "^2.0.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "style-loader": "^0.17.0",
     "webpack": "^2.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "sass-variable-loader": "^0.1.2"
   }
 }
