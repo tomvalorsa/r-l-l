@@ -19,6 +19,13 @@ export default {
         include: path.join(__dirname, 'src')
       },
       {
+        test: /\.js$/,
+        include: [
+          path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src')
+        ],
+        loader: 'babel-loader'
+      },
+      {
         test: /\.scss$/,
         loader: extract.extract({
           fallback: 'style-loader',
@@ -46,6 +53,13 @@ export default {
         include: path.join(__dirname, 'src')
       },
       {
+        test: /\.css$/,
+        loader: extract.extract({ fallback: 'style-loader', use: 'css-loader' }),
+        include: [
+          path.resolve(__dirname, 'node_modules', 'leaflet')
+        ]
+      },
+      {
         test: /\.(jpe?g|gif|png|svg)$/,
         loader: 'file-loader?name=[hash].[ext]'
       },
@@ -61,7 +75,8 @@ export default {
   plugins: [
     new extract('index.css'),
     new copy([
-      { from: './src/index.html' }
+      { from: './src/index.html' },
+      { from: 'node_modules/leaflet/dist/images', to: 'leaflet-images' }
     ])
   ]
 }
